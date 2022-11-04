@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{"BoatType":"Sail powered boats","BoatsCost":5000,"Capacity":420,"Hull":"V-Shaped Hulls"},{"BoatType":"powered boats","BoatsCost":4000,"Capacity":380,"Hull":"Round-bottomed hulls"},{"BoatType":"Motorboats","BoatsCost":3600,"Capacity":3500,"Hull":"Pontoon hulls"}];
+  div(class="container-fluid") 
+    div(class="row") 
+      div(class="col-sm-3" width="245px") #[strong BoatType]  
+      div(class="col-sm-2" width="200px") #[strong Boats Cost]
+      div(class="col-sm-2" width="200px") #[strong Capacity]
+      div(class="col-sm-2" width="200px") #[strong Hull]
+    br
+    each item in results
+      div(class="row")
+        div(class="col-sm-3" width="245px") #{item.BoatType}
+        div(class="col-sm-2" width="200px") #{item.BoatsCost}
+        div(class="col-sm-2" width="200px") #{item.Capacity}
+        div(class="col-sm-2" width="200px") #{item.Hull}
+    br
+  div(class="container-fluid")
+    h6 Please click on below row for getting alert for bonus
+    div(class="row")
+    - for(var i=0;i<results.length;i++) {
+        div(class="col-sm-2" width="215px" onClick=`buy(${i+1})`) #{results[i].BoatType}
+    -}
+    script. 
+      function buy(indexNum) {
+        alert(`You purchased item ${indexNum}`);
+      }
