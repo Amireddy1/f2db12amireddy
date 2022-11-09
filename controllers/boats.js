@@ -32,3 +32,16 @@ exports.boats_delete = function(req, res) {
 exports.boats_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: boats update PUT' + req.params.id); 
 }; 
+
+// VIEWS 
+// Handle a show all view 
+exports.boats_view_all_Page = async function(req, res) { 
+    try{ 
+        theboats = await Boats.find(); 
+        res.render('boats', { title: 'boats Search Results', results: theboats }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
