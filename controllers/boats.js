@@ -55,8 +55,23 @@ exports.boats_delete = function(req, res) {
 }; 
  
 // Handle Boats update form on PUT. 
-exports.boats_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: boats update PUT' + req.params.id); 
+exports.boats_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Boats.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.BoatType) toUpdate.BoatType = req.body.BoatType; 
+        if(req.body.BoatsCost) toUpdate.BoatsCost = req.body.BoatsCost; 
+        if(req.body.Capacity) toUpdate.Capacity = req.body.Capacity; 
+        if(req.body.Hull) toUpdate.Hull = req.body.Hull;
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`); 
+    } 
 }; 
 
 // VIEWS 
