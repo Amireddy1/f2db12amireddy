@@ -5,4 +5,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', boats_controlers.boats_view_all_Page ); 
 
+/* GET detail Boats page */ 
+router.get('/detail', boats_controlers.boats_view_one_Page); 
+
 module.exports = router;

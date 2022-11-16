@@ -50,9 +50,17 @@ exports.boats_create_post = async function(req, res) {
 }; 
  
 // Handle Boats delete form on DELETE. 
-exports.boats_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: boats delete DELETE ' + req.params.id); 
-}; 
+exports.boats_delete =  async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Boats.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+};  
  
 // Handle Boats update form on PUT. 
 exports.boats_update_put = async function(req, res) { 
@@ -85,4 +93,18 @@ exports.boats_view_all_Page = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+ // Handle a show one view with id specified by query 
+ exports.boats_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Boats.findById( req.query.id) 
+        res.render('boatsdetail',  
+{ title: 'boats Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 
