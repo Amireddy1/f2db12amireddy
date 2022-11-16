@@ -8,4 +8,7 @@ router.get('/', boats_controlers.boats_view_all_Page );
 /* GET detail Boats page */ 
 router.get('/detail', boats_controlers.boats_view_one_Page); 
 
+/* GET create Boats page */ 
+router.get('/create', boats_controlers.boats_create_Page); 
+
 module.exports = router;
