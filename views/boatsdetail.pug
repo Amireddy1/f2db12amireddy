@@ -2,21 +2,24 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let BoatType = toShow.BoatType 
-  - let BoatsCost = toShow.BoatsCost 
-  - let Capacity = toShow.Capacity 
-  - let Hull = toShow.Hull 
-  div 
-    div.row 
-      div(class='boatsAttr mr-3') Boats Type is: 
-      div #{BoatType} 
-    div.row 
-      div(class='boatsAttr mr-3') Boats Cost is: 
-      div #{BoatsCost} 
-    div.row 
-      div(class='boatsAttr mr-3') Capacity is: 
-      div #{Capacity} 
-    div.row 
-      div(class='boatsAttr mr-3') Hull is: 
-      div #{Hull} 
+  if (toShow == null) 
+    h2 No instance to display
+  else
+    - let boatsid = toShow._id 
+    - let BoatType = toShow.BoatType 
+    - let BoatsCost = toShow.BoatsCost 
+    - let Capacity = toShow.Capacity 
+    - let Hull = toShow.Hull 
+    div 
+      div.row 
+        div(class='boatsAttr mr-3') Boats Type is: 
+        div #{BoatType} 
+      div.row 
+        div(class='boatsAttr mr-3') Boats Cost is: 
+        div #{BoatsCost} 
+      div.row 
+        div(class='boatsAttr mr-3') Capacity is: 
+        div #{Capacity} 
+      div.row 
+        div(class='boatsAttr mr-3') Hull is: 
+        div #{Hull} 

@@ -1,0 +1,50 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to update
+  else
+    - let boatsid = toShow._id
+    - let BoatType = toShow.BoatType 
+    - let BoatsCost = toShow.BoatsCost 
+    - let Capacity = toShow.Capacity 
+    - let Hull = toShow.Hull 
+   
+    div.row(class='mb-2') 
+      div.mr-1 ID is 
+      div #{BoatType} 
+    - let actionid = "/resource/boats/" + boatsid
+    form(id='boatsForm', action= actionid, method="PUT") 
+      div.form-group 
+          label.boatsAttr(for='BoatType') Boat Type 
+          input#BoatType(type='text', name='BoatType', value= BoatType ) 
+      div.form-group 
+          label.boatsAttr(for='BoatsCost') Boats Cost 
+          input#BoatsCost(type='Number',class="btn btn-danger m-2",name='BoatsCost', value= BoatsCost ) 
+      div.form-group 
+          label.boatsAttr(for='Capacity') Capacity 
+          input#Capacitycost(type='number', class="btn btn-secondary m-2", name='Capacity', value= Capacity ) 
+      div.form-group 
+          label.boatsAttr(for='Hull') Hull 
+          input#Hull(type='text', name='Hull', value= Hull )     
+      input(type="submit", class="btn btn-primary") 
+ 
+    script. 
+      document.forms['boatsForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+          method: 'PUT', 
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+          alert("Update succeded") 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Update failed " + error ) 
+        }); 
+      }); 
+ 
