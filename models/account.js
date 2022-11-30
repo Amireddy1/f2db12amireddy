@@ -1,5 +1,5 @@
 const mongoose = require("mongoose") 
-const BoatsSchema = mongoose.Schema
+const Schema = mongoose.Schema
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const accountSchema = new Schema({ 
@@ -11,4 +11,4 @@ accountSchema.plugin(passportLocalMongoose);
 
 // We export the Schema to avoid attaching the model to the 
 // default mongoose connection. 
-module.exports = mongoose.model("Boats", BoatsSchema) 
+module.exports = mongoose.model("Account", accountSchema) 
