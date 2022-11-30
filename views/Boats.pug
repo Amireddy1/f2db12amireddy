@@ -10,6 +10,8 @@ block content
         div(class="row-sm-2", class="m-1" width="215px") Boat Type #{item.BoatType}, Boats Cost #{item.BoatsCost}, Capacity #{item.Capacity} is Hull #{item.Hull}
           br
           button.btn( class="btn-primary ml-1", onclick= destination) Update 
+          a(class="btn btn-primary" href=`/boats/detail/?id=${item._id}`) Details
+          a(class="btn btn-primary" href=`/boats/delete/?id=${item._id}`) Delete
    
   script. 
     function dispatch(path){ 

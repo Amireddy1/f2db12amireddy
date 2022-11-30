@@ -28,6 +28,9 @@ block content
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
+        if(body.error)
+         alert(`Save Failed due to - ${body.error}`)
+        else
         alert("Save succeded") 
         // TODO handle body 
       }).catch((error) => { 

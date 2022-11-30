@@ -15,13 +15,15 @@ const secured = (req, res, next) => {
 router.get('/', boats_controlers.boats_view_all_Page ); 
 
 /* GET detail Boats page */ 
-router.get('/detail', boats_controlers.boats_view_one_Page); 
+router.get('/detail', secured,boats_controlers.boats_view_one_Page); 
+
+router.get('/boats/:id', secured,boats_controlers.boats_detail);
 
 /* GET create Boats page */ 
-router.get('/create', boats_controlers.boats_create_Page);  
+router.get('/create', secured,boats_controlers.boats_create_Page);  
 
 /* GET delete Boats page */ 
-router.get('/delete', boats_controlers.boats_delete_Page);
+router.get('/delete', secured,boats_controlers.boats_delete_Page);
 
 /* GET update Boats page */ 
 router.get('/update',secured,boats_controlers.boats_update_Page); 
